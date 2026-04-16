@@ -156,24 +156,20 @@ JDBC URL: jdbc:h2:mem:trackerdb
 
 ### 🔵 Shreyas Bhat — Project Lead & Core Architecture
 
-> **Primary contributor** responsible for the foundation and majority of the application.
-
 - **Project Setup**: Initialized Spring Boot project, configured Maven (`pom.xml`), set up application properties and H2 database seeding (`data.sql`)
 - **Spring Security**: Implemented full role-based authentication — login, registration, logout, route-level access control (`SecurityConfig.java`, `AuthController.java`, `UserDetailsServiceImpl.java`)
 - **Domain Model Design**: Designed the entire entity hierarchy — `Content` (abstract, Single Table Inheritance) → `Book` (abstract) → subclasses, `User`, `ReadingList`, `ReadingProgress`, all enums (`Genre`, `Role`, `ReadingStatus`)
 - **Singleton Pattern**: Implemented thread-safe double-checked locking `AppSettingsManager` (`config/AppSettingsManager.java`)
-- **Admin Module**: Built the Admin dashboard, user management with per-user reading book aggregation (`AdminController.java`, `admin/users.html`, `admin/dashboard.html`)
-- **Thymeleaf UI**: Designed and built the shared base layout and all Thymeleaf HTML templates (dashboard, auth pages, reading list views)
-- **Service Layer Foundation**: Implemented `UserService` and `ReadingProgressService` including progress percentage/page calculation logic
 - **Repository Layer**: Defined all four JPA repositories with custom query methods
 
 ---
 
-### 🟢 Shreyasnh — Facade Pattern & Dashboard
+### 🟢 Shreyansh — Facade Pattern & Dashboard
 
 - **Facade Pattern**: Designed and implemented `UserDashboardFacade` — a `@Component` that unifies four service calls (`UserService`, `ReadingListService`, `ReadingProgressService`, `ContentService`) into a single `getDashboardData(username)` method (`pattern/facade/UserDashboardFacade.java`)
 - **Dashboard DTO**: Created `DashboardData` — the transfer object returned by the Facade, holding all aggregated dashboard data (`pattern/facade/DashboardData.java`)
 - **DashboardController Refactoring**: Updated `DashboardController` to depend solely on the Facade abstraction instead of four separate service injections, applying the Dependency Inversion Principle
+- - **Thymeleaf UI**: Designed and built the shared base layout and all Thymeleaf HTML templates (dashboard, auth pages, reading list views)
 
 ---
 
@@ -182,6 +178,7 @@ JDBC URL: jdbc:h2:mem:trackerdb
 - **Factory Pattern**: Implemented `ContentFactory` — a static factory that uses a switch expression on `Genre` to instantiate the correct `Book` subclass (`FictionBook`, `ProgrammingBook`, or `ProductivityBook`) without exposing constructors to callers (`pattern/factory/ContentFactory.java`)
 - **Book Subclasses**: Created the three concrete `Book` subclasses — `FictionBook`, `ProgrammingBook`, `ProductivityBook` — each mapped via JPA discriminator values
 - **Content Module**: Built `ContentService` (uses `ContentFactory` internally) and `ContentController` (handles admin add/edit/delete for the content library, `content/form.html`, `content/list.html`)
+- - **Admin Module**: Built the Admin dashboard, user management with per-user reading book aggregation (`AdminController.java`, `admin/users.html`, `admin/dashboard.html`)
 
 ---
 
@@ -190,6 +187,8 @@ JDBC URL: jdbc:h2:mem:trackerdb
 - **Builder Pattern**: Implemented `ReadingListBuilder` — a fluent builder that constructs `ReadingList` objects step-by-step via `.name()`, `.owner()`, `.addContent()`, and `.build()` methods (`pattern/builder/ReadingListBuilder.java`)
 - **Prototype Pattern**: Implemented `ProgressTemplate` — holds a static `ReadingProgress` template pre-configured to `NOT_STARTED / 0%` and exposes `cloneDefault()` via Java's `Cloneable` interface, used every time a user starts tracking a new book (`pattern/prototype/ProgressTemplate.java`)
 - **Reading List Module**: Built `ReadingListService` (uses `ReadingListBuilder` internally) and `ReadingListController` — handling list creation, detail view, adding content, and deletion (`readinglist/list.html`, `readinglist/detail.html`, `readinglist/form.html`)
+- - **Service Layer Foundation**: Implemented `UserService` and `ReadingProgressService` including progress percentage/page calculation logic
+
 
 ---
 
