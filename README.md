@@ -169,11 +169,11 @@ JDBC URL: jdbc:h2:mem:trackerdb
 - **Facade Pattern**: Designed and implemented `UserDashboardFacade` — a `@Component` that unifies four service calls (`UserService`, `ReadingListService`, `ReadingProgressService`, `ContentService`) into a single `getDashboardData(username)` method (`pattern/facade/UserDashboardFacade.java`)
 - **Dashboard DTO**: Created `DashboardData` — the transfer object returned by the Facade, holding all aggregated dashboard data (`pattern/facade/DashboardData.java`)
 - **DashboardController Refactoring**: Updated `DashboardController` to depend solely on the Facade abstraction instead of four separate service injections, applying the Dependency Inversion Principle
-- - **Thymeleaf UI**: Designed and built the shared base layout and all Thymeleaf HTML templates (dashboard, auth pages, reading list views)
+- **Thymeleaf UI**: Designed and built the shared base layout and all Thymeleaf HTML templates (dashboard, auth pages, reading list views)
 
 ---
 
-### 🟡 Shubham — Factory Pattern & Content Module
+### 🟡 Shubham — Factory Pattern & Content ,Admin Module
 
 - **Factory Pattern**: Implemented `ContentFactory` — a static factory that uses a switch expression on `Genre` to instantiate the correct `Book` subclass (`FictionBook`, `ProgrammingBook`, or `ProductivityBook`) without exposing constructors to callers (`pattern/factory/ContentFactory.java`)
 - **Book Subclasses**: Created the three concrete `Book` subclasses — `FictionBook`, `ProgrammingBook`, `ProductivityBook` — each mapped via JPA discriminator values
@@ -182,7 +182,7 @@ JDBC URL: jdbc:h2:mem:trackerdb
 
 ---
 
-### 🟠 Shrest — Builder Pattern & Reading List Module
+### 🟠 Shrest — Builder Pattern & Reading List Module & Service layer foundation
 
 - **Builder Pattern**: Implemented `ReadingListBuilder` — a fluent builder that constructs `ReadingList` objects step-by-step via `.name()`, `.owner()`, `.addContent()`, and `.build()` methods (`pattern/builder/ReadingListBuilder.java`)
 - **Prototype Pattern**: Implemented `ProgressTemplate` — holds a static `ReadingProgress` template pre-configured to `NOT_STARTED / 0%` and exposes `cloneDefault()` via Java's `Cloneable` interface, used every time a user starts tracking a new book (`pattern/prototype/ProgressTemplate.java`)
