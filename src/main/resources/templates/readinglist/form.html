@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{layout/base :: head}"></th:block>
+</head>
+<body>
+    <th:block th:replace="~{layout/base :: header}"></th:block>
+    
+    <div class="container">
+        <div class="card" style="max-width: 500px; margin: 0 auto;">
+            <h2>Create Reading List</h2>
+            
+            <form th:action="@{/readinglist/save}" method="post">
+                <div class="form-group">
+                    <label for="name">List Name</label>
+                    <input type="text" id="name" name="name" required placeholder="e.g. Must Read 2024">
+                </div>
+                <button type="submit" class="btn">Create</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

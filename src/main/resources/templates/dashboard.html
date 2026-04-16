@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{layout/base :: head}"></th:block>
+</head>
+<body>
+    <th:block th:replace="~{layout/base :: header}"></th:block>
+    
+    <div class="container">
+        <h1>Welcome, <span th:text="${user.name}">User</span></h1>
+        
+        <div style="display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
+            
+            <div class="card" style="flex: 1; min-width: 300px;">
+                <h3>Your Reading Progress</h3>
+                <div th:if="${#lists.isEmpty(progressList)}">
+                    <p style="color:#aaa;">You haven't started tracking any content yet.</p>
+                </div>
+                <div th:each="prog : ${progressList}" style="margin-bottom: 1.5rem;">
+                    <div>
+                        <strong th:text="${prog.content.title}">Book Title</strong> 
+                        <span style="font-size: 0.8em; color: var(--secondary);" th:text="'(' + ${prog.status} + ')'">STATUS</span>
+                    </div>
+                    <div style="background: #444; height: 10px; border-radius: 5px; margin: 0.5rem 0; overflow: hidden;">
+                        <div th:style="'width:' + ${prog.percentage} + '%; background: var(--primary); height: 100%;'"></div>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span th:text="${prog.pagesRead} + ' / ' + ${prog.content.totalPages} + ' pages (' + ${#numbers.formatDecimal(prog.percentage, 1, 1)} + '%)'"></span>
+                        
+                        <form th:action="@{/progress/update/{id}(id=${prog.progressId})}" method="post" style="display:flex; gap:5px;" th:if="${prog.percentage < 100}">
+                            <input type="number" name="pagesRead" min="0" th:max="${prog.content.totalPages}" th:value="${prog.pagesRead}" style="width: 80px; padding: 0.25rem;">
+                            <button type="submit" class="btn" style="padding: 0.25rem 0.5rem;">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="flex: 1; min-width: 300px;">
+                <h3>Your Reading Lists</h3>
+                <div th:if="${#lists.isEmpty(readingLists)}">
+                    <p style="color:#aaa;">You don't have any lists.</p>
+                </div>
+                <ul style="list-style: none; padding: 0;">
+                    <li th:each="list : ${readingLists}" style="margin-bottom: 0.5rem;">
+                        <a th:href="@{/readinglist/{id}(id=${list.listId})}" th:text="${list.name}" style="color:var(--text); text-decoration:underline;">List Name</a>
+                        <span style="color:#aaa; font-size:0.8em;" th:text="'(' + ${#lists.size(list.contents)} + ' items)'"></span>
+                    </li>
+                </ul>
+                <a href="/readinglist/new" class="btn" style="margin-top: 1rem;">Create New List</a>
+            </div>
+            
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <div class="card" style="max-width: 600px;">
+                <h3>Start Tracking Content</h3>
+                <form th:action="@{/progress/start}" method="post" style="display: flex; gap: 10px; margin-top: 1rem;">
+                    <select name="contentId" required style="flex: 1; padding: 0.5rem;">
+                        <option value="" disabled selected>Select content to track...</option>
+                        <option th:each="c : ${allContent}" th:value="${c.contentId}" th:text="${c.title} + ' (' + ${c.genre} + ')'"></option>
+                    </select>
+                    <button type="submit" class="btn">Start Tracking</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

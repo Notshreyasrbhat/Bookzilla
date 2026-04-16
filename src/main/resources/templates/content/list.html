@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="~{layout/base :: head}"></th:block>
+</head>
+<body>
+    <th:block th:replace="~{layout/base :: header}"></th:block>
+    
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <h2 style="margin: 0;">Discover Content</h2>
+                <form action="/content" method="get" style="display: flex; gap: 5px; align-items: center;">
+                    <select name="genre" style="padding: 0.25rem;">
+                        <option value="">All Genres</option>
+                        <option th:each="g : ${genres}" th:value="${g}" th:text="${g}" th:selected="${g == selectedGenre}"></option>
+                    </select>
+                    <button type="submit" class="btn" style="padding: 0.25rem 0.5rem; font-size: 0.9em;">Filter</button>
+                </form>
+            </div>
+            <a sec:authorize="hasRole('ADMIN')" href="/content/new" class="btn">Add New Content</a>
+        </div>
+        
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                        <th>Description</th>
+                        <th sec:authorize="isAuthenticated()">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="content : ${contents}">
+                        <td th:text="${content.title}">Title</td>
+                        <td th:text="${content.author}">Author</td>
+                        <td><span style="background: #333; padding: 3px 8px; border-radius: 12px; font-size: 0.8em;" th:text="${content.genre}">GENRE</span></td>
+                        <td th:text="${content.description}">Description</td>
+                        <td sec:authorize="isAuthenticated()">
+                            <a th:href="@{/progress/start/{id}(id=${content.contentId})}" class="btn" style="padding: 4px 8px; font-size: 0.9em;">Track</a>
+                            <th:block sec:authorize="hasRole('ADMIN')">
+                                <a th:href="@{/content/edit/{id}(id=${content.contentId})}" class="btn" style="padding: 4px 8px; font-size: 0.9em; background: #555;">Edit</a>
+                                <a th:href="@{/content/delete/{id}(id=${content.contentId})}" class="btn" style="padding: 4px 8px; font-size: 0.9em; background: #c33;">Delete</a>
+                            </th:block>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

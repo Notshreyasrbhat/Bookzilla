@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{layout/base :: head}"></th:block>
+</head>
+<body>
+    <th:block th:replace="~{layout/base :: header}"></th:block>
+    
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 th:text="${list.name}">List Name</h2>
+            <a href="/readinglist" class="btn" style="background:#555;">Back to Lists</a>
+        </div>
+        
+        <div class="card" style="margin-top: 1rem;">
+            <h3>Contents</h3>
+            <ul style="list-style: none; padding: 0;" th:if="${!#lists.isEmpty(list.contents)}">
+                <li th:each="content : ${list.contents}" style="padding: 0.5rem; border-bottom: 1px solid #333;">
+                    <strong th:text="${content.title}">Title</strong> by <span th:text="${content.author}">Author</span> 
+                    <span style="font-size: 0.8em; color: var(--secondary);" th:text="'[' + ${content.genre} + ']'"></span>
+                    
+                    <th:block th:with="prog=${progressMap[content.contentId]}">
+                        <div th:if="${prog != null}" style="margin-top: 10px; background: #222; padding: 10px; border-radius: 5px;">
+                            <div style="background: #444; height: 5px; border-radius: 3px; margin: 0.5rem 0; overflow: hidden;">
+                                <div th:style="'width:' + ${prog.percentage} + '%; background: var(--primary); height: 100%;'"></div>
+                            </div>
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size: 0.9em;" th:text="${prog.pagesRead} + ' / ' + ${content.totalPages} + ' pages (' + ${#numbers.formatDecimal(prog.percentage, 1, 1)} + '%)'"></span>
+                                
+                                <form th:action="@{/progress/update/{id}(id=${prog.progressId})}" method="post" style="display:flex; gap:5px;" th:if="${prog.percentage < 100}">
+                                    <input type="number" name="pagesRead" min="0" th:max="${content.totalPages}" th:value="${prog.pagesRead}" style="width: 70px; padding: 0.2rem;">
+                                    <input type="hidden" name="redirectUrl" th:value="'/readinglist/' + ${list.listId}">
+                                    <button type="submit" class="btn" style="padding: 0.2rem 0.5rem; font-size: 0.9em;">Update</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div th:if="${prog == null}" style="margin-top: 5px;">
+                            <span style="color: #888; font-size: 0.8em; font-style: italic;">Not tracked currently</span>
+                            <a th:href="@{/progress/start/{id}(id=${content.contentId}, redirectUrl='/readinglist/' + ${list.listId})}" class="btn" style="padding: 2px 8px; font-size: 0.8em; margin-left: 10px;">Start Tracking</a>
+                        </div>
+                    </th:block>
+                </li>
+            </ul>
+            <p th:if="${#lists.isEmpty(list.contents)}" style="color: #888;">This list is empty.</p>
+        </div>
+        
+        <div class="card" style="margin-top: 1rem; max-width: 500px;">
+            <h3>Add Content to List</h3>
+            <form th:action="@{/readinglist/{id}/add-content(id=${list.listId})}" method="post" style="display: flex; gap: 10px;">
+                <select name="contentId" required style="flex: 1;">
+                    <option value="" disabled selected>Select content...</option>
+                    <option th:each="content : ${allContent}" th:value="${content.contentId}" th:text="${content.title} + ' (' + ${content.genre} + ')'"></option>
+                </select>
+                <button type="submit" class="btn">Add</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# ─── IDE & Editor ────────────────────────────────────────
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# ─── Maven build output ──────────────────────────────────
+target/
+
+# ─── Convenience / scratch files (not part of project) ───
+task.md
+implementation_plan.md
+temp.xml
+
+# ─── OS generated ────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Spring Boot local config ────────────────────────────
+application-local.properties
+application-local.yml

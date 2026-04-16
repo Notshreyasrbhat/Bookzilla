@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{layout/base :: head}"></th:block>
+</head>
+<body>
+    <th:block th:replace="~{layout/base :: header}"></th:block>
+    
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h2>Manage Users</h2>
+            <a href="/admin/dashboard" class="btn" style="background:#555;">Back to Dashboard</a>
+        </div>
+        
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Currently Reading</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.userId}">ID</td>
+                        <td th:text="${user.name}">Name</td>
+                        <td th:text="${user.email}">Email</td>
+                        <td><span style="background: var(--primary); padding: 3px 8px; border-radius: 12px; font-size: 0.8em;" th:text="${user.role}">ROLE</span></td>
+                        <td>
+                            <ul style="margin: 0; padding-left: 1rem; font-size: 0.9em; color: #ccc;">
+                                <li th:each="book : ${userBooksMap[user.userId]}" th:text="${book}"></li>
+                                <li th:if="${#lists.isEmpty(userBooksMap[user.userId])}" style="color: #666; list-style: none; margin-left: -1rem; font-style: italic;">None</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

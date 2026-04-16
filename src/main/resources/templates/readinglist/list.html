@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{layout/base :: head}"></th:block>
+</head>
+<body>
+    <th:block th:replace="~{layout/base :: header}"></th:block>
+    
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>My Reading Lists</h2>
+            <a href="/readinglist/new" class="btn">Create New List</a>
+        </div>
+        
+        <div class="card" style="margin-top: 1rem;">
+            <div th:if="${#lists.isEmpty(lists)}">
+                <p>You don't have any lists. Create one to organize your content!</p>
+            </div>
+            <ul style="list-style: none; padding: 0;">
+                <li th:each="list : ${lists}" style="padding: 1rem; border-bottom: 1px solid #333; display: flex; justify-content: space-between;">
+                    <div>
+                        <a th:href="@{/readinglist/{id}(id=${list.listId})}" style="font-size: 1.2em; font-weight: bold; color: var(--text); text-decoration: none;" th:text="${list.name}">List Name</a>
+                        <p style="margin: 0.2rem 0; color: #888;" th:text="${#lists.size(list.contents)} + ' items'"></p>
+                    </div>
+                    <div>
+                        <a th:href="@{/readinglist/delete/{id}(id=${list.listId})}" class="btn btn-danger">Delete</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

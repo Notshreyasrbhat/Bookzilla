@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>Reading Tracker</title>
+    <!-- simple aesthetics styling for WOW factor as per directives -->
+    <style>
+        :root { --primary:#6200ea; --secondary:#03dac6; --bg:#121212; --surface:#1e1e1e; --text:#e0e0e0; }
+        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background: var(--bg); color:var(--text); }
+        header { background: var(--surface); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        header a { color: var(--text); margin-right: 15px; text-decoration: none; transition: color 0.3s ease; }
+        header a:hover { color: var(--primary); }
+        .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        .card { background: var(--surface); padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom:1rem; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; background: var(--surface); color:var(--text); }
+        th, td { border-bottom: 1px solid #333; padding: 1rem; text-align: left; }
+        th { background: #2c2c2c; }
+        .btn { padding: 8px 16px; background: var(--primary); color: white; text-decoration: none; border-radius: 4px; border:none; cursor: pointer; transition: transform 0.2s, background 0.2s; display: inline-block;}
+        .btn:hover { transform: translateY(-2px); background: #7c4dff; }
+        .btn-danger { background: #cf6679; color:#000; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; color:#aaa; }
+        input, select, textarea { width: 100%; padding: 0.75rem; background:#333; color:white; border:1px solid #444; border-radius:4px;}
+        input:focus { outline:none; border-color:var(--primary); }
+    </style>
+</head>
+<body>
+    <header th:fragment="header">
+        <div>
+            <h2><a href="/" style="color:var(--primary); font-weight:bold;">BooksTracker™</a></h2>
+        </div>
+        <div>
+            <span sec:authorize="isAuthenticated()">
+                <span sec:authorize="hasRole('ADMIN')">
+                    <a href="/admin/dashboard">Admin Space</a>
+                    <a href="/content/new">New Content</a>
+                </span>
+                <span sec:authorize="hasRole('USER')">
+                    <a href="/dashboard">Hub</a>
+                    <a href="/readinglist">My Lists</a>
+                </span>
+                <a href="/content">Discover</a>
+                <a href="/logout" class="btn btn-danger" style="margin-left:15px">Logout</a>
+            </span>
+            <span sec:authorize="!isAuthenticated()">
+                <a href="/login">Login</a>
+                <a href="/register" class="btn">Get Started</a>
+            </span>
+        </div>
+    </header>
+</body>
+</html>
