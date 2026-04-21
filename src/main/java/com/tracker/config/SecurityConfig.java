@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+// CONFIGURATION LAYER: The Firewall.
+// Sets up security rules, login paths, and password hashing logic.
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+// CONTROLLER LAYER: The traffic cop for Login/Registration.
+// Shows the login/register HTML pages and handles the "Submit" button when a new user registers.
 @Controller
 public class AuthController {
 

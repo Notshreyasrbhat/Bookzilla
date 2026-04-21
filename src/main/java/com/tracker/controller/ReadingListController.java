@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+// CONTROLLER LAYER: The traffic cop for Playlists/Reading Lists.
+// Handles requests to create a new reading list or add a specific book to an existing list.
 @Controller
 @RequestMapping("/readinglist")
 public class ReadingListController {

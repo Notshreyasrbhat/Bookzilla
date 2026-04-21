@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
  * the controller delegates all data-gathering to the facade,
  * keeping this class lean and focused solely on request handling.
  */
+// CONTROLLER LAYER: The traffic cop for the User Dashboard.
+// Gathers the user's reading lists and current book progress using the Facade pattern and displays it.
 @Controller
 public class DashboardController {
 

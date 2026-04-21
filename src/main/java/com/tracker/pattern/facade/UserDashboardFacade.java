@@ -28,6 +28,8 @@ import org.springframework.stereotype.Component;
  * - {@link ReadingProgressService}
  * - {@link ContentService}
  */
+// DESIGN PATTERN: Facade.
+// Acts as a middleman. Instead of the DashboardController asking 4 different services for data, it asks this Facade, which gathers all the pieces and returns one neat package.
 @Component
 public class UserDashboardFacade {
 

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// SERVICE LAYER: The bridge to Spring Security.
+// Takes an email from the login page, fetches the User from the database, and hands it to Spring Security to verify the password.
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 

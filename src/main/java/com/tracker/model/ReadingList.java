@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+// MODEL LAYER: Represents a playlist or collection of Books created by a User.
+// Links one User to many pieces of Content.
 @Entity
 @Data
 @NoArgsConstructor

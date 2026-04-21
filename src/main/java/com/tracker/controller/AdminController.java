@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+// CONTROLLER LAYER: The traffic cop for Admin users.
+// Intercepts web requests starting with '/admin', gathers data from Services, and returns the HTML admin pages.
 @Controller
 @RequestMapping("/admin")
 public class AdminController {

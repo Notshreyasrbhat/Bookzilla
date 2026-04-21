@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
+// SERVICE LAYER: The brain for tracking progress.
+// Calculates percentages, changes status (e.g., from 'IN_PROGRESS' to 'COMPLETED'), and uses the Prototype pattern for defaults.
 @Service
 public class ReadingProgressService {
     private final ReadingProgressRepository progressRepository;

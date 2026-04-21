@@ -9,6 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+// CONTROLLER LAYER: The traffic cop for Tracking.
+// Catches when a user clicks "Start Tracking" or "Update Pages Read" and passes that info to the Service layer.
 @Controller
 @RequestMapping("/progress")
 public class ReadingProgressController {

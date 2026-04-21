@@ -14,6 +14,8 @@ import java.util.List;
  * This is produced by the {@link UserDashboardFacade} in a single call,
  * hiding the complexity of fetching from multiple services.
  */
+// DESIGN PATTERN (DTO related to Facade).
+// A simple container holding all the user's data (lists, progress, available books) so it can be passed to the view at once.
 public class DashboardData {
 
     private final User user;

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// SERVICE LAYER: The brain for Books/Content.
+// Receives commands from the Controller, applies business rules, and tells the Repository to save/delete.
 @Service
 public class ContentService {
     private final ContentRepository contentRepository;

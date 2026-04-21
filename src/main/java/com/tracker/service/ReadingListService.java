@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// SERVICE LAYER: The brain for Reading Lists.
+// Handles the logic for creating playlists of books using the Builder pattern.
 @Service
 public class ReadingListService {
     private final ReadingListRepository readingListRepository;

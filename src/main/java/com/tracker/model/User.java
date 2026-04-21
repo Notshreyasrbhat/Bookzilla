@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+// MODEL LAYER: Represents a single User in the database.
+// Stores login credentials, roles, and personal info.
 @Entity
 @Table(name = "users")
 @Data

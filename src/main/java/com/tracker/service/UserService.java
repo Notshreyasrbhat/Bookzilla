@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// SERVICE LAYER: The brain for User Management.
+// Hashes passwords securely during registration and prevents duplicate emails.
 @Service
 public class UserService {
     private final UserRepository userRepository;

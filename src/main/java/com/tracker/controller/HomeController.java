@@ -5,6 +5,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+// CONTROLLER LAYER: The traffic cop for the Homepage.
+// Shows the main landing page of the application.
 @Controller
 public class HomeController {
 

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+// CONTROLLER LAYER: The traffic cop for managing the Library.
+// Used by admins to add new books, edit existing books, or delete them.
 @Controller
 @RequestMapping("/content")
 public class ContentController {

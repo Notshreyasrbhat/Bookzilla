@@ -7,6 +7,8 @@ import com.tracker.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
+// DESIGN PATTERN: Builder.
+// Provides a clean, step-by-step way to construct a complex Reading List object instead of a massive constructor.
 public class ReadingListBuilder {
     private String name;
     private User owner;

@@ -4,6 +4,8 @@ package com.tracker.model;
 import jakarta.persistence.Entity;
 import lombok.NoArgsConstructor;
 
+// MODEL LAYER: Inherits from Content. 
+// Adds specific properties like 'total_pages' to a standard piece of content.
 @Entity
 @NoArgsConstructor
 public abstract class Book extends Content {

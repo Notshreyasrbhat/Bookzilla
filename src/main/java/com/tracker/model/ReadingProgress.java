@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// MODEL LAYER: Connects a User to a specific piece of Content (Book).
+// Keeps track of exactly how far along they are (pages read, percentage, status).
 @Entity
 @Data
 @NoArgsConstructor
