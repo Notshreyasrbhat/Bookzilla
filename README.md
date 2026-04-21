@@ -160,11 +160,14 @@ JDBC URL: jdbc:h2:mem:trackerdb
 - **Spring Security**: Implemented full role-based authentication — login, registration, logout, route-level access control (`SecurityConfig.java`, `AuthController.java`, `UserDetailsServiceImpl.java`)
 - **Domain Model Design**: Designed the entire entity hierarchy — `Content` (abstract, Single Table Inheritance) → `Book` (abstract) → subclasses, `User`, `ReadingList`, `ReadingProgress`, all enums (`Genre`, `Role`, `ReadingStatus`)
 - **Singleton Pattern**: Implemented thread-safe double-checked locking `AppSettingsManager` (`config/AppSettingsManager.java`)
+- **Admin Module**: Built the Admin dashboard, user management with per-user reading book aggregation (`AdminController.java`, `admin/users.html`, `admin/dashboard.html`)
+- **Thymeleaf UI**: Designed and built the shared base layout and all Thymeleaf HTML templates (dashboard, auth pages, reading list views)
+- **Service Layer Foundation**: Implemented `UserService` and `ReadingProgressService` including progress percentage/page calculation logic
 - **Repository Layer**: Defined all four JPA repositories with custom query methods
 
 ---
 
-### 🟢 Shreyansh — Facade Pattern & Dashboard
+### 🟢 Shreyasnh — Facade Pattern & Dashboard
 
 - **Facade Pattern**: Designed and implemented `UserDashboardFacade` — a `@Component` that unifies four service calls (`UserService`, `ReadingListService`, `ReadingProgressService`, `ContentService`) into a single `getDashboardData(username)` method (`pattern/facade/UserDashboardFacade.java`)
 - **Dashboard DTO**: Created `DashboardData` — the transfer object returned by the Facade, holding all aggregated dashboard data (`pattern/facade/DashboardData.java`)

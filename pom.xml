@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tracker</groupId>
-	<artifactId>reading-tracker</artifactId>
+	<artifactId>bookzilla</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>reading-tracker</name>
-	<description>Reading Books Tracker</description>
+	<name>bookzilla</name>
+	<description>Bookzilla</description>
 
 	<properties>
 		<java.version>17</java.version>

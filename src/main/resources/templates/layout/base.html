@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta charset="UTF-8">
-    <title>Reading Tracker</title>
+    <title>Bookzilla</title>
     <!-- simple aesthetics styling for WOW factor as per directives -->
     <style>
         :root { --primary:#6200ea; --secondary:#03dac6; --bg:#121212; --surface:#1e1e1e; --text:#e0e0e0; }
@@ -27,7 +27,7 @@
 <body>
     <header th:fragment="header">
         <div>
-            <h2><a href="/" style="color:var(--primary); font-weight:bold;">BooksTracker™</a></h2>
+            <h2><a href="/" style="color:var(--primary); font-weight:bold;">Bookzilla™</a></h2>
         </div>
         <div>
             <span sec:authorize="isAuthenticated()">

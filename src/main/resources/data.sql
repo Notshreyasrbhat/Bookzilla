@@ -1,6 +1,5 @@
 -- Password for admin is 'admin', user is 'password'
 INSERT INTO users (name, email, password, role) VALUES ('Admin User', 'admin', '{noop}admin', 'ADMIN');
-INSERT INTO users (name, email, password, role) VALUES ('Alice Reader', 'alice@tracker.com', '{bcrypt}$2a$10$hKDVYxLefVHV/vtuPhWD3OigtRyOykRLDdUAp80Z1crSoS1lFqaFS', 'USER');
 
 -- 4 Programming Books
 INSERT INTO content (title, author, genre, description, total_pages) VALUES ('Clean Code', 'Robert C. Martin', 'PROGRAMMING', 'A Handbook of Agile Software Craftsmanship.', 464);

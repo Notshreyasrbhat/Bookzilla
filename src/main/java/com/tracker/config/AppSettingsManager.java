@@ -5,7 +5,7 @@ package com.tracker.config;
 // but this explicit class demonstrates the GoF pattern.
 public class AppSettingsManager {
     private static volatile AppSettingsManager instance;
-    private String appName = "Reading Tracker MVC";
+    private String appName = "Bookzilla";
     
     private AppSettingsManager() {}
     
